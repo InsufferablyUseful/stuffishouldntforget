@@ -1,0 +1,14 @@
+Spotify flatpak has opt in wayland support
+To opt in according to the docs supply this to flatpak run
+--socket=wayland com.spotify.Client
+However this still used Xwayland. So... the executable also needs the following argument 
+--ozone-platform=wayland
+Now we wayland. But...for some reason this misaligns the mouse with the window contents and causes window trails on resize. The fix?
+change the command argument from
+--command=spotify
+to
+--command=/app/extra/bin/spotify
+I don't know
+So, we wayland properly? not quite. The cursor is now tiny. To fix apply the following env variable to the flatpak
+XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
+Now we wayland. Shame about the awful client side decorations though. One day...
