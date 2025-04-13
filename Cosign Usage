@@ -1,0 +1,20 @@
+Generate cosign keypairs.
+When it asks you to enter a password, DONOT ENTER A PASSWORD, Just press enter.
+
+cosign generate-key-pair
+
+This will create two files named cosign.pub and cosign.key, which are your public and private keys, respectively.
+
+Go to the repository settings of your forked boxkit github repo. (NOT your GitHub/Account settings)
+
+    Go to Security > Secrets and variables > Actions
+    Click on New repository secret
+    Create a new secret named SIGNING_SECRET
+    Copy the content inside your cosign.key file to the textbox that appears when you create the SIGNING_SECRET repository secret.
+    Alternatively, you can use GitHub's CLI client.
+
+    gh secret set SIGNING_SECRET < cosign.key
+
+DONOT SHARE YOUR cosign.key FILE OR SIGNING_SECRET PUBLICLY, STORE THE cosign.key FILE SOMEWHERE SECURE AND DONOT INCLUDE IT IN YOUR GIT REPOSITORY.
+
+Delete the cosign.pub key that exists on the repository's root folder and copy the cosign.pub file you created to the repository's root folder.
